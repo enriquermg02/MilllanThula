@@ -1,65 +1,73 @@
+def hash_function(name):
+    suma = 0
+    for character in name:
+        suma += ord(character)
+    return suma % 3
+
+
 class juego():
-    def init(self, nombre,precio) :
+    def init(self, modelo, titulo, precio):
 
-        self.nombre=nombre
-        self.precio=precio
-        self.status="EN STOCK"
-
-
+        self.modelo = modelo
+        self.titulo = titulo
+        self.precio = precio
+        self.status = "EN STOCK"
 
         pass
 
 
-print(""" ---------------------- HOLA BIENVIDO A LA TIENDA Rent - A - Game ----------------------------
+print(""" ---------------------- HOLA BIENVENIDO A LA TIENDA Rent - A - Game ----------------------------
 
 INSETAR NUEVOS JUEGOS A LA TIENDA/ EN ESTE PROGRAMA PODRAS ALQUILAR JUEGOS/ DEVOLVER JUEGOS""")
-victoria=[]
-
+victoria = []
 
 while (True):
     print("Ingrese la opcion que desea realizar")
 
-
-    hola=input("""    
+    opcion = input("""    
     (1)INSERTAR JUEGO
     (2)ALQUILAR JUEGO
     (3)DEVOLVER JUEGO
     (4)SALIR
     ====>""")
-    while hola!="1" and hola!="2" and hola!="3" and hola!="4":
-        hola=input("""    
+    while opcion != "1" and opcion != "2" and opcion != "3" and opcion != "4":
+        opcion = input("""    
                 (1)INSERTAR JUEGO
                 (2)ALQUILAR JUEGO
                 (3)DEVOLVER JUEGO
                 (4)SALIR
                 ====>""")
 
-    if int(hola) == 1:
+    if int(opcion) == 1:
 
         print("INSERCION DE JUEGOS")
 
-        nombre=input("Di el nombre del juego, debe de tener 6 letras y 2 digitos (EJEMPLO: SPACEI23):  " )
+        modelo = input(
+            "Di el modelo del juego, debe de tener 6 letras y 2 digitos (EJEMPLO: SPACEI23):  ")
 
-        while   nombre[5].isnumeric()==False and nombre[6].isnumeric()==False :
-                nombre=input("""Di el nombre del juego, debe de tener 6 letras y 2 digitos (EJEMPLO: SPACEI23)
+        while modelo[-1].isnumeric() == False and modelo[-2].isnumeric() == False:
+            modelo = input("""Di el modelo del juego, debe de tener 6 letras y 2 digitos (EJEMPLO: SPACEI23)
             ====>""")
 
+        titulo = input(
+            "Di el titulo del juego, debe tener maximo 10 caracteres: ")
+        while len(titulo) > 10:
+            input("Di el titulo del juego: ")
 
-        precio=input("Di el precio del juego: ")
+        precio = input("Di el precio del juego: ")
 
-        while precio.isnumeric()==False:
-            precio=input("Di el precio del juego: ")
+        while precio.isnumeric() == False or (int(precio) > 999):
+            precio = input("Di el precio del juego: ")
 
-
-        game= juego(nombre,precio)
+        game = juego(modelo, titulo, precio)
 
         victoria.append(game)
 
-    elif int(hola) == 2:
-        print("hola2")
+    elif int(opcion) == 2:
+        print("opcion2")
 
-    elif int(hola)==3:
-        print ("hola3")
-    elif int(hola) == 4:
+    elif int(opcion) == 3:
+        print("opcion3")
+    elif int(opcion) == 4:
         print(len(victoria))
         break
