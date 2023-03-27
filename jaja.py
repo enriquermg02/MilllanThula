@@ -6,7 +6,7 @@ def hash_function(name):
 
 
 class juego():
-    def __init__(self, modelo, titulo, precio) :
+    def __init__(self, modelo, titulo, precio):
         self.modelo = modelo
         self.titulo = titulo
         self.precio = precio
@@ -14,28 +14,25 @@ class juego():
 
         pass
 
-def insertar_overflow(overflow,juego):
 
-    aux=0
+def insertar_overflow(overflow, juego):
+
+    aux = 0
     for n in overflow:
-        if len(n)!=3:
+        if len(n) != 3:
             overflow[aux].append(juego)
             break
 
-        aux+=1
+        aux += 1
 
     return overflow
 
 
-
-
 print(""" ---------------------- HOLA BIENVENIDO A LA TIENDA Rent - A - Game ----------------------------
 INSETAR NUEVOS JUEGOS A LA TIENDA/ EN ESTE PROGRAMA PODRAS ALQUILAR JUEGOS/ DEVOLVER JUEGOS""")
-lista = [[],[],[]]
-overflow=[[],[],[],[],[],[]]
-alquilados=[]
-
-
+lista = [[], [], []]
+overflow = [[], [], [], [], [], []]
+alquilados = []
 
 
 while (True):
@@ -78,44 +75,35 @@ while (True):
 
         game = juego(modelo, titulo, precio)
 
-        numero=hash_function(modelo)
+        numero = hash_function(modelo)
 
-
-        if len(lista[numero])>=3:
-            overflow=insertar_overflow(overflow,game)
+        if len(lista[numero]) >= 3:
+            overflow = insertar_overflow(overflow, game)
 
         else:
             lista[numero].append(game)
 
-
-
-
-
-
-
     elif int(opcion) == 2:
         print("ALQUILAR JUEGO")
 
-        buscar=input("Indique el modelo del juego que deasea Alquilar. Se le sera indiquaco si esta disponible o no.")
+        buscar = input(
+            "Indique el modelo del juego que deasea Alquilar. Se le sera indiquaco si esta disponible o no.")
 
-        numero=hash_function(buscar)
-        #aqui lo que haces es buscar si el juego esta en la lista hash, si esta se alquila y se quita el juego, si no pasamos al else
-        if len(lista[numero])!=0:
+        numero = hash_function(buscar)
+        # aqui lo que haces es buscar si el juego esta en la lista hash, si esta se alquila y se quita el juego, si no pasamos al else
+        if len(lista[numero]) != 0:
             for n in lista[numero]:
-                if n.modelo==buscar:
+                if n.modelo == buscar:
                     lista[numero].remove(n)
                     print("USTED HA ALQUILADO UN JUEGO\n")
                     break
         else:
-            #aqui se supone que el overflow es el almacen, y se busca en el overflow, si no se encuentra decimos que no existe el juego
-
-
+            # aqui se supone que el overflow es el almacen, y se busca en el overflow, si no se encuentra decimos que no existe el juego
 
             print("No tenemos juegos en stock. Desea buscar en almacen ")
-            opcion=input("(1)SI\n(2)NO")
-            if opcion=="1":
+            opcion = input("(1)SI\n(2)NO")
+            if opcion == "1":
                 print("oks")
-
 
     elif int(opcion) == 3:
         print("opcion3")
@@ -125,4 +113,3 @@ while (True):
         print(lista)
         print(overflow)
         break
-
