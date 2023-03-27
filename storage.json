@@ -1,0 +1,35 @@
+{
+    "lista": {
+        "CLAPTO56": {
+            "modelo": "CLAPTO56",
+            "titulo": "M",
+            "precio": "3",
+            "status": "EN STOCK"
+        },
+        "PPPPPP45": {
+            "modelo": "PPPPPP45",
+            "titulo": "ML",
+            "precio": "56",
+            "status": "EN STOCK"
+        },
+        "SPACEI23": {
+            "modelo": "SPACEI23",
+            "titulo": "H",
+            "precio": "67",
+            "status": "EN STOCK"
+        },
+        "MMMMMM34": {
+            "modelo": "MMMMMM34",
+            "titulo": "T",
+            "precio": "5",
+            "status": "EN STOCK"
+        },
+        "AAAAAA23": {
+            "modelo": "AAAAAA23",
+            "titulo": "A",
+            "precio": "34",
+            "status": "EN STOCK"
+        }
+    },
+    "overflow": {}
+}

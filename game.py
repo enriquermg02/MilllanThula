@@ -1,3 +1,6 @@
+import json
+
+
 def hash_function(name):
     suma = 0
     for character in name:
@@ -6,11 +9,19 @@ def hash_function(name):
 
 
 class juego():
-    def __init__(self, modelo, titulo, precio):
+    def __init__(self, modelo, titulo, precio, status="EN STOCK"):
         self.modelo = modelo
         self.titulo = titulo
         self.precio = precio
         self.status = "EN STOCK"
+
+    def to_dict(self):
+        return {
+            "modelo": self.modelo,
+            "titulo": self.titulo,
+            "precio": self.precio,
+            "status": self.status
+        }
 
         pass
 
@@ -27,25 +38,48 @@ def insertar_overflow(overflow, juego):
 
     return overflow
 
+# [[{"course": "python", "fee": 4000}], [{"duration": "60days", "discount": 1200}]]
+
 
 print(""" ---------------------- HOLA BIENVENIDO A LA TIENDA Rent - A - Game ----------------------------
 INSETAR NUEVOS JUEGOS A LA TIENDA/ EN ESTE PROGRAMA PODRAS ALQUILAR JUEGOS/ DEVOLVER JUEGOS""")
+
 lista = [[], [], []]
 overflow = [[], [], [], [], [], []]
-alquilados = []
+
+with open("storage.json", "r") as f:
+    # if f.read(2) == null:
+    #     f.seek(0)  # it may be redundant but it does not hurt
+    data = json.load(f)
+
+    dicc_juegos = data["lista"]
+    dicc_overflow = data["overflow"]
+
+    for k, v in dicc_juegos.items():
+        numero = hash_function(k)
+        juego_actual = juego(v["modelo"], v["titulo"],
+                             v["precio"], v["status"])
+
+        lista[numero].append(juego_actual)
+
+    for k, v in dicc_overflow.items():
+        juego_actual = juego(v["modelo"], v["titulo"],
+                             v["precio"], v["status"])
+
+        overflow.append(juego_actual)
 
 
 while (True):
     print("Ingrese la opcion que desea realizar")
 
-    opcion = input("""    
+    opcion = input("""
     (1)INSERTAR JUEGO
     (2)ALQUILAR JUEGO
     (3)DEVOLVER JUEGO
     (4)SALIR
     ====>""")
     while opcion != "1" and opcion != "2" and opcion != "3" and opcion != "4":
-        opcion = input("""    
+        opcion = input("""
                 (1)INSERTAR JUEGO
                 (2)ALQUILAR JUEGO
                 (3)DEVOLVER JUEGO
@@ -107,9 +141,27 @@ while (True):
 
     elif int(opcion) == 3:
         print("opcion3")
-    elif int(opcion) == 4:
-        print(len(lista))
 
-        print(lista)
-        print(overflow)
+    elif int(opcion) == 4:
+        json_lista = {}
+        json_overflow = {}
+
+        for juegos in lista:
+            for j in juegos:
+                json_lista[j.modelo] = j.to_dict()
+
+        for juegos in overflow:
+            for j in juegos:
+                json_overflow[j.modelo] = j.to_dict()
+
+        print(json_lista)
+
+        storage = {
+            "lista": json_lista,
+            "overflow": json_overflow
+        }
+
+        with open('storage.json', 'w') as fp:
+            json.dump(storage, fp, indent=4)
+
         break
