@@ -112,9 +112,30 @@ while (True):
         game = juego(modelo, titulo, precio)
 
         numero = hash_function(modelo)
-
+        print(numero)
         if len(lista[numero]) >= 3:
-            overflow = insertar_overflow(overflow, game)
+            #overflow = insertar_overflow(overflow, game)
+            if numero==0:
+                if len(overflow[0])<4:
+                    overflow[0].append(game)
+                elif len(overflow[1])<4:
+                    overflow[1].append(game)
+                else:
+                    print("Ya no hay espacio")
+            elif numero==1:
+                if len(overflow[2])<4:
+                    overflow[2].append(game)
+                elif len(overflow[3])<4:
+                    overflow[3].append(game)
+                else:
+                    print("Ya no hay espacio")
+            elif numero==2:
+                if len(overflow[4])<4:
+                    overflow[4].append(game)
+                elif len(overflow[5])<4:
+                    overflow[5].append(game)
+                else:
+                    print("Ya no hay espacio")
 
         else:
             lista[numero].append(game)
@@ -122,27 +143,34 @@ while (True):
     elif int(opcion) == 2:
         print("ALQUILAR JUEGO")
 
-        buscar = input(
-            "Indique el modelo del juego que deasea Alquilar. Se le sera indiquaco si esta disponible o no.")
+        buscar=input("Indique el modelo del juego que deasea Alquilar. Se le sera indiquaco si esta disponible o no.\n")
 
-        numero = hash_function(buscar)
-        # aqui lo que haces es buscar si el juego esta en la lista hash, si esta se alquila y se quita el juego, si no pasamos al else
-        if len(lista[numero]) != 0:
+        numero=hash_function(buscar)
+        #aqui lo que haces es buscar si el juego esta en la lista hash, si esta se alquila y se quita el juego, si no pasamos al else
+        if len(lista[numero])!=0:
             for n in lista[numero]:
-                if n.modelo == buscar:
-                    lista[numero].remove(n)
+                if n.modelo==buscar:
+                    n.status="ALQUILADO"
                     print("USTED HA ALQUILADO UN JUEGO\n")
                     break
         else:
-            # aqui se supone que el overflow es el almacen, y se busca en el overflow, si no se encuentra decimos que no existe el juego
+            #aqui se supone que el overflow es el almacen, y se busca en el overflow, si no se encuentra decimos que no existe el juegp
+
+
 
             print("No tenemos juegos en stock. Desea buscar en almacen ")
-            opcion = input("(1)SI\n(2)NO")
-            if opcion == "1":
+            opcion2=input("(1)SI\n(2)NO")
+            if opcion2=="1":
+
                 print("oks")
+                for n in overflow:
+                    for k in n:
+                       if k.modelo==buscar:
+                        k.status="ALQUILADO"
+                        print("USTED HA ALQUILADO UN JUEGO\n")
+                        break  
 
     elif int(opcion) == 3:
-        print("opcion3")
         print("DEVOLVER JUEGO")
         buscar=input("Indique el modelo del juego que deasea Devolver. Se le sera indiquaco si esta disponible o no.\n")
 
@@ -184,13 +212,15 @@ while (True):
             if(juegoaborrar==i.modelo):
                 lista[numero].remove(i)
 
-        print(lista)
-
+      
 
 
 
 
     elif int(opcion) == 5:
+        print(lista)
+        print(overflow)
+
         print("terminar")
         json_lista = {}
         json_overflow = {}
