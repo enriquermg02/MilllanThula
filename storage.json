@@ -24,12 +24,31 @@
             "precio": "5",
             "status": "EN STOCK"
         },
+        "EEEEEE34": {
+            "modelo": "EEEEEE34",
+            "titulo": "E",
+            "precio": "1",
+            "status": "EN STOCK"
+        },
         "AAAAAA23": {
             "modelo": "AAAAAA23",
             "titulo": "A",
             "precio": "34",
             "status": "EN STOCK"
+        },
+        "ABCDEF23": {
+            "modelo": "ABCDEF23",
+            "titulo": "ERMG",
+            "precio": "69",
+            "status": "EN STOCK"
         }
     },
-    "overflow": {}
+    "overflow": {
+        "EEEEEE34": {
+            "modelo": "EEEEEE34",
+            "titulo": "E",
+            "precio": "1",
+            "status": "EN STOCK"
+        }
+    }
 }
