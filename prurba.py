@@ -1,25 +1,24 @@
-diccionario = {1: "hola", "nombre": "enrique"}
 
+lista=[1,2,0,0]
 
-print(diccionario["nombre"])
+def comprobarcero(lista,game,numero):
 
-
-
-
-hola = {1: 3}
-
-
-
-print(hola[1])
+    if 0 in lista[numero]:
+            numerovacio=lista[numero].index(0)
+            
+            lista[numero][numerovacio]=game
 
 
 
-lista=[1,2,3,4,5]
+numero=1
+game=2
+
+hola=[[],[1,0,3]]
+
+comprobarcero(hola,game,numero)
 
 
-for i in lista:
-    if (i==4):
-        lista.remove(i)
+print(hola)
+    
 
 
-print(lista)
